@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "228876194121",
+    "firebase_url": "https://signin-ab41f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "signin-ab41f",
+    "storage_bucket": "signin-ab41f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228876194121:android:5f7588a13456c0d9ec4a98",
+        "android_client_info": {
+          "package_name": "com.example.auth_with_google"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228876194121-iq76662s0fimmd22249i85as1l6c9tpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuPl5i2-dOQCe9e7Q3yjE4Jnba_s6HQpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228876194121-iq76662s0fimmd22249i85as1l6c9tpo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
