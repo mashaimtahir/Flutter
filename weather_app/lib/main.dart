@@ -29,6 +29,10 @@ class _WeatherAppHomePageState extends State<WeatherAppHomePage> {
   double longitude = 0.0;
   double latitude = 0.0;
   double temperatue = 0.0;
+  double temperatue_max = 0.0;
+  double temperatue_min = 0.0;
+  String name = '';
+  String description = '';
   @override
   void initState() {
     FetchLocation();
@@ -37,10 +41,77 @@ class _WeatherAppHomePageState extends State<WeatherAppHomePage> {
   }
 
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        temperatue.toString(),
-        style: TextStyle(fontSize: 30),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Temperature: ',
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                temperatue.toStringAsFixed(2),
+                style: TextStyle(fontSize: 30),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Feels Like: ',
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                name.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Max Temperature: ',
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                temperatue_max.toStringAsFixed(2),
+                style: TextStyle(fontSize: 30),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Min Temperature: ',
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                temperatue_min.toStringAsFixed(2),
+                style: TextStyle(fontSize: 30),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Description: ',
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                description.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -77,12 +148,14 @@ class _WeatherAppHomePageState extends State<WeatherAppHomePage> {
         "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$Api_Key";
     var url = Uri.parse(urlString);
     http.Response response = await http.get(url);
-    print(response.body);
     var responseBody = response.body;
     var parsedResponse = json.decode(responseBody);
-    print(parsedResponse['main']['temp']);
     setState(() {
       temperatue = parsedResponse['main']['temp'] - 273.15;
+      temperatue_max = parsedResponse['main']['temp_max'] - 273.15;
+      temperatue_min = parsedResponse['main']['temp_min'] - 273.15;
+      name = parsedResponse['name'];
+      description = parsedResponse['weather'][0]['description'];
     });
   }
 }
